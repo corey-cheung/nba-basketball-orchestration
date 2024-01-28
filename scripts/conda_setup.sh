@@ -11,5 +11,12 @@ conda deactivate
 conda env remove -n nba-basketball-orchestration
 conda create -yqn nba-basketball-orchestration python=3.10
 conda activate nba-basketball-orchestration
+conda install \
+	--channel conda-forge \
+	--channel defaults \
+	--quiet \
+	--yes \
+    psycopg2 \
+    pendulum
 
 echo "Finished, now spin up your new conda environment with 'conda activate nba-basketball-orchestration'"
