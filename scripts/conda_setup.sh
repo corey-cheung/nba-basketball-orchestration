@@ -16,7 +16,8 @@ conda install \
 	--channel defaults \
 	--quiet \
 	--yes \
-    psycopg2 \
+    "airflow==2.8.0" \
+    "flask-session<0.6.0" \
     pendulum
 
 echo "Finished, now spin up your new conda environment with 'conda activate nba-basketball-orchestration'"
