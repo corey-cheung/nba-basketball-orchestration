@@ -18,6 +18,7 @@ conda install \
 	--yes \
     "airflow==2.8.0" \
     "flask-session<0.6.0" \
+	apache-airflow-providers-airbyte \
     pendulum
 
 echo "Finished, now spin up your new conda environment with 'conda activate nba-basketball-orchestration'"
