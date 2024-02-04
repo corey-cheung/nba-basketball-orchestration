@@ -3,8 +3,8 @@
 import os
 
 import pendulum
-from pendulum import datetime
 
+from pendulum import datetime
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
