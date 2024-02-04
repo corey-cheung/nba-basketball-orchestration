@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+"""
+Helper functions to use in the airflow DAG.
+"""
 
 import duckdb
 import psycopg2
@@ -15,7 +18,6 @@ def query_duckdb(query: str) -> list[tuple]:
     duckdb_path = Variable.get("DUCKDB_PATH")
     with duckdb.connect(duckdb_path) as conn:
         cursor = conn.cursor()
-        print("connected to duckdb!")
         cursor.execute(query)
         result = cursor.fetchall()
 
@@ -36,7 +38,6 @@ def query_postgres(query: str) -> list[tuple]:
             port="5432",
         ) as conn:
             cursor = conn.cursor()
-            print("connected to postgres!")
             cursor.execute(query)
             result = cursor.fetchall()
 
@@ -50,6 +51,6 @@ def split_queries_to_list(path: str) -> list[str]:
     with open(path,  encoding="UTF-8") as sql_file:
         queries = sql_file.read()
         query_list = queries.split(';')[:-1]
-        query_list.sort() #  in place
+        query_list.sort() #  in-place
 
     return query_list

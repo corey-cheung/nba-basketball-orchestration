@@ -9,4 +9,7 @@ WHERE status = 'Final' -- get completed games
 AND home_team_score <> 0
 AND visitor_team_score <> 0;
 -- box_score
-SELECT COUNT(*) FROM nba_basketball.box_score;
+SELECT COUNT(*)
+FROM nba_basketball.box_score
+JOIN nba_basketball.game USING(game_id)
+WHERE status = 'Final';
