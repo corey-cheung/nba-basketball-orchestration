@@ -1,11 +1,16 @@
+#!/usr/bin/env python
+
 import os
 
 import pendulum
-from pendulum import datetime
 
+from pendulum import datetime
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
+from airflow.models import Variable
+from airflow.decorators import task
+from task_utils import query_duckdb, query_postgres, split_queries_to_list
 
 
 with DAG(
@@ -14,7 +19,6 @@ with DAG(
     schedule="0 18 * * *",
     catchup=False,
 ):
-
     home_dir = os.environ.get("HOME_DIR")
     conda_setup = "source ~/miniconda3/etc/profile.d/conda.sh && "
     ingest_setup = conda_setup + "conda activate nba-basketball-ingestion && "
@@ -56,4 +60,23 @@ with DAG(
         bash_command=f"{dbt_setup} && dbt build"
     )
 
-    update_players >> [update_games, update_box_score] >> test_postgres >> airbyte_sync_duckdb >> dbt_build
+    @task
+    def check_row_count():
+        """
+        Test that the row count for our raw tables (Postgres) is the same as the mart tables
+        that are created by dbt (duckdb).
+        """
+        nba_elt_dir = Variable.get("NBA_ELT_DIR")
+        test_postgres_path = f"{nba_elt_dir}/include/sql/test_postgres_rows.sql"
+        test_duckdb_path = f"{nba_elt_dir}/include/sql/test_duckdb_rows.sql"
+        test_postgres_queries = split_queries_to_list(test_postgres_path)
+        test_duckdb_queries = split_queries_to_list(test_duckdb_path)
+        postgres_rows = [query_postgres(query) for query in test_postgres_queries]
+        duckdb_rows = [query_duckdb(query) for query in test_duckdb_queries]
+        print(postgres_rows)
+        print(duckdb_rows)
+        assert postgres_rows == duckdb_rows
+
+        return postgres_rows == duckdb_rows
+
+    update_players >> [update_games, update_box_score] >> test_postgres >> airbyte_sync_duckdb >> dbt_build >> check_row_count()
