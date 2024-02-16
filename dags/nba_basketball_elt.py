@@ -67,8 +67,8 @@ with DAG(
         that are created by dbt (duckdb).
         """
         nba_elt_dir = Variable.get("NBA_ELT_DIR")
-        test_postgres_path = f"{nba_elt_dir}/include/sql/test_postgres_rows.sql"
-        test_duckdb_path = f"{nba_elt_dir}/include/sql/test_duckdb_rows.sql"
+        test_postgres_path = f"{nba_elt_dir}/include/tests/sql/test_postgres_rows.sql"
+        test_duckdb_path = f"{nba_elt_dir}/include/tests/sql/test_duckdb_rows.sql"
         test_postgres_queries = split_queries_to_list(test_postgres_path)
         test_duckdb_queries = split_queries_to_list(test_duckdb_path)
         postgres_rows = [query_postgres(query) for query in test_postgres_queries]
