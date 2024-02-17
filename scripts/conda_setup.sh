@@ -21,6 +21,17 @@ conda install \
 	apache-airflow-providers-airbyte \
     pendulum \
 	python-duckdb \
-	psycopg2
+	psycopg2 \
+	requests \
+	tenacity \
+	pandas
+conda install \
+	--channel conda-forge \
+	--channel defaults \
+	--quiet \
+	--yes \
+    black \
+    pylint \
+	isort
 
 echo "Finished, now spin up your new conda environment with 'conda activate nba-basketball-orchestration'"
