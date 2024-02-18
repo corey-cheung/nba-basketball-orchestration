@@ -53,7 +53,7 @@ def format_games_data(
     return formatted
 
 
-# pylint: disable=R0913, R1710
+# pylint: disable=R0913, R1710, W0719
 def get_games(
     api_key: str,
     url: str,
@@ -61,10 +61,11 @@ def get_games(
     look_back: int = 2,
     cursor: int | None = None,
     truncate: bool = True,
+    csv_header: str = None,
 ) -> list[str]:
     """
-    Query the data from the API recursively through each page. Format the data and write
-    it to a csv file.
+    Query the data from the game endpoint recursively. Format the data and write it to a
+    temporary csv file.
 
     Parameters:
         api_key: API key from balldontlie.io.
@@ -88,7 +89,9 @@ def get_games(
         data = response.json()["data"]
         meta = response.json()["meta"]
         data = [format_games_data(i) for i in data]
-        write_to_csv(path="temp_games.csv", data=data, truncate=truncate)
+        write_to_csv(
+            path="temp_games.csv", data=data, truncate=truncate, header=csv_header
+        )
 
         if "next_cursor" not in meta:  # base case: last page
             return None
@@ -100,16 +103,23 @@ def get_games(
             look_back=2,
             cursor=cursor,
             truncate=False,  # Never truncate when looping to the next page
+            csv_header=None,
         )
 
     else:
         raise Exception(f"API request failed: {response.status_code}:{response.reason}")
-        return None
 
 
 if __name__ == "__main__":
+    csv_header = "'game_id','game_date','home_team_id','home_team_score',"
+    csv_header += (
+        "'visitor_team_id','visitor_team_score','season','post_season','status'"
+    )
+
     get_games(
         api_key=os.environ.get("BALLDONTLIE_API_KEY"),
         url="http://api.balldontlie.io/v1/games",
         look_back=2,
+        csv_header=csv_header,
+        per_page=8,
     )
