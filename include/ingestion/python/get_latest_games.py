@@ -61,7 +61,7 @@ def get_games(
     look_back: int = 2,
     cursor: int | None = None,
     truncate: bool = True,
-    csv_header: str = None,
+    csv_header: bool = False,
 ) -> list[str]:
     """
     Query the data from the game endpoint recursively. Format the data and write it to a
@@ -74,6 +74,7 @@ def get_games(
         look_back: Number of days to look back when querying the API.
         cursor: The key that points to the relevant pagination.
         truncate: To truncate the existing CSV.
+        csv_header: To add the column names at the top of CSV.
     """
     start_date, end_date = get_start_and_end_dates(look_back)
     headers = {"Authorization": api_key}
@@ -83,6 +84,13 @@ def get_games(
         "start_date": start_date,
         "end_date": end_date,
     }
+    if csv_header:
+        column_names = "'game_id','game_date','home_team_id','home_team_score',"
+        column_names += (
+            "'visitor_team_id','visitor_team_score','season','post_season','status'"
+        )
+    else:
+        column_names = None
 
     response = requests.get(url, params=params, headers=headers, timeout=60)
     if response.status_code == 200:
@@ -90,7 +98,7 @@ def get_games(
         meta = response.json()["meta"]
         data = [format_games_data(i) for i in data]
         write_to_csv(
-            path="temp_games.csv", data=data, truncate=truncate, header=csv_header
+            path="temp_games.csv", data=data, truncate=truncate, header=column_names
         )
 
         if "next_cursor" not in meta:  # base case: last page
@@ -103,7 +111,7 @@ def get_games(
             look_back=2,
             cursor=cursor,
             truncate=False,  # Never truncate when looping to the next page
-            csv_header=None,
+            csv_header=False,  # Don't add header again when looping to the next page
         )
 
     else:
@@ -111,15 +119,10 @@ def get_games(
 
 
 if __name__ == "__main__":
-    csv_header = "'game_id','game_date','home_team_id','home_team_score',"
-    csv_header += (
-        "'visitor_team_id','visitor_team_score','season','post_season','status'"
-    )
-
     get_games(
         api_key=os.environ.get("BALLDONTLIE_API_KEY"),
         url="http://api.balldontlie.io/v1/games",
         look_back=2,
-        csv_header=csv_header,
+        csv_header=True,
         per_page=8,
     )
