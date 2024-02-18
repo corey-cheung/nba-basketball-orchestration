@@ -17,20 +17,24 @@ def get_row_to_insert(data: dict[str, str | int]) -> str:
         data: A dictionary that represents one row of the table we want to insert into.
     """
     values = [
-        str(i)
-        if ( # don't put numbers, floats, booleans, or nulls in quotes
-            str(i).isnumeric()
-            or str(i).lower() in ("true", "false")
-            or str(i) == "NULL"
+        (
+            str(i)
+            if (  # don't put numbers, floats, booleans, or nulls in quotes
+                str(i).isnumeric()
+                or str(i).lower() in ("true", "false")
+                or str(i) == "NULL"
+            )
+            else "'" + str(i) + "'"
         )
-        else "'" + str(i) + "'"
         for i in data.values()
     ]  # non-integers and non-bools will need a literal "'" in the insert DML
     row = ",".join(values)
     return row
 
 
-def write_to_csv(path: str, data: list[dict[str, str | int]], truncate: bool):
+def write_to_csv(
+    path: str, data: list[dict[str, str | int]], truncate: bool, header: str = None
+):
     """
     Format data received from the ball don't lie API and write it to a CSV.
 
@@ -43,10 +47,12 @@ def write_to_csv(path: str, data: list[dict[str, str | int]], truncate: bool):
     csv_exists = os.path.isfile(path)
     if truncate and csv_exists:
         os.remove(path)
-    with open(path, "a", encoding="UTF-8") as games_csv:
+    with open(path, "a", encoding="UTF-8") as csv:
+        if header:
+            csv.write(f"{header}\n")
         for row in data:
             row_to_insert = get_row_to_insert(row)
-            games_csv.write(f"{row_to_insert}\n")
+            csv.write(f"{row_to_insert}\n")
 
 
 def generate_db_objects(query: str) -> None:
@@ -113,6 +119,7 @@ def handle_nulls(func):
     Wrapper function to handle nulls when cleaning the API response. To be used as a
     decorator in the 'format data' functions.
     """
+
     def wrapper(*args, **kwargs):
         data = func(*args, **kwargs)
         data = {k: ("NULL" if v is None or v == "" else v) for (k, v) in data.items()}
@@ -126,9 +133,13 @@ def handle_apostrophes(func):
     Wrapper function to handle apostrophes when cleaning the API response. To be used as
     a decorator in the 'format data' functions.
     """
+
     def wrapper(*args, **kwargs):
         data = func(*args, **kwargs)
-        data = {k: (str(v).replace("'", "''") if "'" in str(v) else v) for (k, v) in data.items()}
+        data = {
+            k: (str(v).replace("'", "''") if "'" in str(v) else v)
+            for (k, v) in data.items()
+        }
         return data
 
     return wrapper

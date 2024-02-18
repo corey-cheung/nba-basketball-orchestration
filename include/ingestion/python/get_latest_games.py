@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 import requests
 
 
-from nba_pg_ingestion_utils import query_postgres, write_to_csv
+from ingestion_utils import query_postgres, write_to_csv
 
 
 def get_start_and_end_dates(look_back) -> tuple[str, str]:
