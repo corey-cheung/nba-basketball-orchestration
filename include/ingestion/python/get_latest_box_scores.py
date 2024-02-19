@@ -75,6 +75,7 @@ def format_box_score_data(
     return formatted
 
 
+# pylint: disable=R0913, R1710, W0719
 def get_box_scores(
     api_key: str,
     url: str,
