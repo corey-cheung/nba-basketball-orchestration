@@ -8,6 +8,7 @@ import requests
 import duckdb
 from ingestion_utils import handle_nulls, write_to_csv
 
+
 def get_games_to_query() -> list[int]:
     """
     Get the game_id's to query to box score endpoint.
@@ -24,7 +25,7 @@ def get_games_to_query() -> list[int]:
 
 
 @handle_nulls
-def format_box_score(
+def format_box_score_data(
     data: dict[str, str | int | dict[str, str | int]]
 ) -> dict[str, str | int]:
     """
@@ -75,37 +76,74 @@ def format_box_score(
 
 
 def get_box_scores(
-        api_key: str,
-        url: str,
-        game_ids: list[int] | int = None,
-        per_page: int = 100,
-        cursor: int | None = None,
-        truncate: bool = True,
-        csv_header: bool = False,
+    api_key: str,
+    url: str,
+    game_ids: list[int] | int = None,
+    per_page: int = 100,
+    cursor: int | None = None,
+    truncate: bool = True,
+    csv_header: bool = False,
 ):
     """
-    Query the data from the box score endpoint recursively. Format the data and write it
-    to a temporary csv file.
+    Query the box score endpoint recursively. Format the data and write it to a
+    temporary csv file.
     """
     headers = {"Authorization": api_key}
-    params = {
-        "per_page": per_page,
-        "cursor": cursor,
-        "game_ids[]": game_ids
-    }
+    params = {"per_page": per_page, "cursor": cursor, "game_ids[]": game_ids}
+    if csv_header:
+        column_names = "'box_score_id','game_id','player_id','reb','ast','blk','stl',"
+        column_names += "'turnover','oreb','dreb','fg3_pct','fg3a','fg3m','fg_pct',"
+        column_names += "'fga','fgm','ft_pct','fta','ftm','min','pf'"
+    else:
+        column_names = None
+
     response = requests.get(url, headers=headers, params=params, timeout=60)
     if response.status_code == 200:
         data = response.json()["data"]
         meta = response.json()["meta"]
-        print(len(data))
-        print(meta)
+        data = [format_box_score_data(i) for i in data]
+        write_to_csv(
+            path="temp_box_scores.csv",
+            data=data,
+            truncate=truncate,
+            header=column_names,
+        )
 
-    return
+        if "next_cursor" not in meta:  # base case: last page
+            return None
 
-if __name__ == '__main__':
+        cursor = meta["next_cursor"]  # loop to next page
+        print(f"looping to next cursor: {cursor}")
+        get_box_scores(
+            api_key=os.environ.get("BALLDONTLIE_API_KEY"),
+            url="https://api.balldontlie.io/v1/stats",
+            game_ids=game_ids,
+            per_page=100,
+            cursor=cursor,
+            truncate=False,  # Never truncate when looping to the next page
+            csv_header=False,  # Don't add header again when looping to the next page
+        )
+
+    else:
+        raise Exception(f"API request failed: {response.status_code}:{response.reason}")
+
+
+def main() -> None:
+    """
+    Get the game_id's from the temp_games csv and use the game_id's to query the box
+    score endpoint. Format the data and write it to a temporary csv file.
+    """
+
+    games = get_games_to_query()
+
     get_box_scores(
         api_key=os.environ.get("BALLDONTLIE_API_KEY"),
         url="https://api.balldontlie.io/v1/stats",
+        game_ids=games,
         per_page=100,
-        game_ids=[1038168,1038382],
+        csv_header=True,
     )
+
+
+if __name__ == "__main__":
+    main()
