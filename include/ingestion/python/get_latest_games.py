@@ -64,8 +64,8 @@ def get_games(
     csv_header: bool = False,
 ) -> list[str]:
     """
-    Query the data from the game endpoint recursively. Format the data and write it to a
-    temporary csv file.
+    Query the game endpoint recursively. Format the data and write it to a temporary csv
+    file.
 
     Parameters:
         api_key: API key from balldontlie.io.
