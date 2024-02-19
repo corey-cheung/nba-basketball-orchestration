@@ -9,9 +9,9 @@ import duckdb
 from ingestion_utils import handle_nulls, write_to_csv
 
 
-def get_games_to_query() -> list[int]:
+def get_games_ids() -> list[int]:
     """
-    Get the game_id's to query to box score endpoint.
+    Get the game_id's from the temp_games csv, to query to box score endpoint.
     """
     games = duckdb.sql(
         """
@@ -135,7 +135,7 @@ def main() -> None:
     score endpoint. Format the data and write it to a temporary csv file.
     """
 
-    games = get_games_to_query()
+    games = get_games_ids()
 
     get_box_scores(
         api_key=os.environ.get("BALLDONTLIE_API_KEY"),
