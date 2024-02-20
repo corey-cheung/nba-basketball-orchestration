@@ -1,4 +1,4 @@
-'game_id','game_date','home_team_id','home_team_score','visitor_team_id','visitor_team_score','season','post_season','status'
+game_id,game_date,home_team_id,home_team_score,visitor_team_id,visitor_team_score,season,post_season,status
 1038168,'2024-02-15',29,137,10,140,2023,False,'Final'
 1038363,'2024-02-13',3,110,2,118,2023,False,'Final'
 1038364,'2024-02-13',22,113,21,127,2023,False,'Final'
