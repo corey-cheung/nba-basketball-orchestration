@@ -88,6 +88,14 @@ def get_box_scores(
     """
     Query the box score endpoint recursively. Format the data and write it to a
     temporary csv file.
+
+    Parameters:
+        api_key: API key from balldontlie.io.
+        url: The url of the box scores endpoint.
+        per_page: The number of items to return in each page of the API response.
+        cursor: The key that points to the relevant pagination.
+        truncate: To truncate the existing CSV.
+        csv_header: To add the column names at the top of CSV.
     """
     headers = {"Authorization": api_key}
     params = {"per_page": per_page, "cursor": cursor, "game_ids[]": game_ids}

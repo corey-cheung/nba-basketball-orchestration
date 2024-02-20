@@ -18,7 +18,7 @@ def get_player_ids() -> list[int]:
         """
             SELECT
                 DISTINCT player_id
-            FROM read_csv('temp_box_scores.csv', AUTO_DETECT=TRUE) as box_scores
+            FROM read_csv('temp_box_scores.csv', AUTO_DETECT=TRUE)
             order by 1
         """
     ).fetchall()
@@ -64,6 +64,14 @@ def get_players(
     """
     Query the player endpoint recursively. Format the data and write it to a
     temporary csv file.
+
+    Parameters:
+        api_key: API key from balldontlie.io.
+        url: The url of the players endpoint.
+        per_page: The number of items to return in each page of the API response.
+        cursor: The key that points to the relevant pagination.
+        truncate: To truncate the existing CSV.
+        csv_header: To add the column names at the top of CSV.
     """
     headers = {"Authorization": api_key}
     params = {"per_page": per_page, "cursor": cursor, "player_ids[]": player_ids}
