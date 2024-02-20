@@ -11,7 +11,7 @@ from ingestion_utils import handle_nulls, write_to_csv
 
 def get_games_ids() -> list[int]:
     """
-    Get the game_id's from the temp_games csv, to query to box score endpoint.
+    Get the game_id's from the temp_games csv, to query the box score endpoint.
     """
     games = duckdb.sql(
         """
@@ -92,9 +92,9 @@ def get_box_scores(
     headers = {"Authorization": api_key}
     params = {"per_page": per_page, "cursor": cursor, "game_ids[]": game_ids}
     if csv_header:
-        column_names = "'box_score_id','game_id','player_id','reb','ast','blk','stl',"
-        column_names += "'turnover','oreb','dreb','fg3_pct','fg3a','fg3m','fg_pct',"
-        column_names += "'fga','fgm','ft_pct','fta','ftm','min','pf'"
+        column_names = "box_score_id,game_id,player_id,team_id,pts,reb,ast,"
+        column_names += "blk,stl,turnover,oreb,dreb,fg3_pct,fg3a,fg3m,"
+        column_names += "fg_pct,fga,fgm,ft_pct,fta,ftm,min,pf"
     else:
         column_names = None
 

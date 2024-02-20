@@ -64,8 +64,8 @@ def get_games(
     csv_header: bool = False,
 ) -> list[str]:
     """
-    Query the game endpoint recursively. Format the data and write it to a temporary csv
-    file.
+    Query the game endpoint recursively. Format the data and write it to a
+    temporary csv file.
 
     Parameters:
         api_key: API key from balldontlie.io.
@@ -85,10 +85,8 @@ def get_games(
         "end_date": end_date,
     }
     if csv_header:
-        column_names = "'game_id','game_date','home_team_id','home_team_score',"
-        column_names += (
-            "'visitor_team_id','visitor_team_score','season','post_season','status'"
-        )
+        column_names = "game_id,game_date,home_team_id,home_team_score,visitor_team_id,"
+        column_names += "visitor_team_score,season,post_season,status"
     else:
         column_names = None
 
