@@ -62,7 +62,7 @@ def get_games(
     cursor: int | None = None,
     truncate: bool = True,
     csv_header: bool = False,
-) -> list[str]:
+) -> None:
     """
     Query the game endpoint recursively. Format the data and write it to a
     temporary csv file.

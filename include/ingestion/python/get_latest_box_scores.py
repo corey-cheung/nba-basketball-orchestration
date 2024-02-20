@@ -84,7 +84,7 @@ def get_box_scores(
     cursor: int | None = None,
     truncate: bool = True,
     csv_header: bool = False,
-):
+) -> None:
     """
     Query the box score endpoint recursively. Format the data and write it to a
     temporary csv file.
@@ -129,22 +129,11 @@ def get_box_scores(
         raise Exception(f"API request failed: {response.status_code}:{response.reason}")
 
 
-def main() -> None:
-    """
-    Get the game_id's from the temp_games csv and use the game_id's to query the box
-    score endpoint. Format the data and write it to a temporary csv file.
-    """
-
-    games = get_games_ids()
-
+if __name__ == "__main__":
     get_box_scores(
         api_key=os.environ.get("BALLDONTLIE_API_KEY"),
         url="https://api.balldontlie.io/v1/stats",
-        game_ids=games,
+        game_ids=get_games_ids(),
         per_page=100,
         csv_header=True,
     )
-
-
-if __name__ == "__main__":
-    main()
