@@ -19,7 +19,6 @@ def get_player_ids() -> list[int]:
             SELECT
                 DISTINCT player_id
             FROM read_csv('temp_box_scores.csv', AUTO_DETECT=TRUE)
-            order by 1
         """
     ).fetchall()
     players = [player[0] for player in players]

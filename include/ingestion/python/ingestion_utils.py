@@ -122,7 +122,10 @@ def handle_nulls(func):
 
     def wrapper(*args, **kwargs):
         data = func(*args, **kwargs)
-        data = {k: ("NULL" if v is None or v == "" else v) for (k, v) in data.items()}
+        data = {
+            k: ("NULL" if v is None or (isinstance(v, str) and v.strip() == "") else v)
+            for (k, v) in data.items()
+        }
         return data
 
     return wrapper
