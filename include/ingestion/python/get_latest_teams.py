@@ -8,6 +8,7 @@ import os
 import requests
 from ingestion_utils import write_to_csv, handle_nulls
 
+
 @handle_nulls
 def format_team_data(
     team: dict[str, str | int | dict[str, str | int]]
@@ -29,6 +30,8 @@ def format_team_data(
 
     return formatted
 
+
+# pylint: disable=W0719
 def get_teams(api_key: str, url: str) -> None:
     """
     Query the team endpoint to get all teams. Format the data and write it to a
