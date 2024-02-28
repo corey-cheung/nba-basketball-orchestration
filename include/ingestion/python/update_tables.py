@@ -17,7 +17,7 @@ def get_columns_and_values(file: str) -> tuple[list[str], str]:
     Parameters:
         file: The file name of the CSV.
     """
-    with open(file,"r") as table:
+    with open(file, "r", encoding="UTF-8") as table:
         table = csv.reader(table)
         columns = next(table)
 
@@ -29,6 +29,7 @@ def get_columns_and_values(file: str) -> tuple[list[str], str]:
         return columns, values_str
 
 
+# pylint: disable=C0200
 def create_upsert_query(
     table: str,
     columns: list[str],
@@ -63,7 +64,7 @@ ON CONFLICT ({primary_key}) DO UPDATE SET
 
 def main():
     """
-
+    Loop through all the CSVs in the directory and upsert the relevant tables.
     """
     temp_table_files = [file for file in os.listdir(".") if file.endswith(".csv")]
 
@@ -71,12 +72,13 @@ def main():
         print(f"Updating with {file}")
         columns, values = get_columns_and_values(file)
         primary_key = columns[0]
-        table = primary_key.replace("_id","")
+        table = primary_key.replace("_id", "")
         print(primary_key, table)
         query = create_upsert_query(
             table=table, columns=columns, values=values, primary_key=primary_key
         )
         generate_db_objects(query)
+
 
 if __name__ == "__main__":
     main()
