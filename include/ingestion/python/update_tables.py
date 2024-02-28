@@ -23,18 +23,6 @@ def get_columns_and_values(file: str) -> tuple[list[str], str]:
 
         values_str = ""
         for line in table:
-        #     values = [
-        #     (
-        #         str(i)
-        #         if (  # don't put numbers, floats, booleans, or nulls in quotes
-        #             str(i).isnumeric()
-        #             or str(i).lower() in ("true", "false")
-        #             or str(i) == "NULL"
-        #         )
-        #         else "'" + str(i) + "'"
-        #     )
-        #     for i in line
-        # ]  # non-integers and non-bools will need a literal "'" in the insert DML
             values = ",".join(line)
             values_str += f"({values}),\n"
         values_str = values_str[:-2]
@@ -78,14 +66,17 @@ def main():
 
     """
     temp_table_files = [file for file in os.listdir(".") if file.endswith(".csv")]
-    file = temp_table_files[0]
 
-    columns, values = get_columns_and_values(file)
-    query = create_upsert_query(
-        table="team", columns=columns, values=values, primary_key="team_id"
-    )
-    print(query)
-    generate_db_objects(query)
+    for file in temp_table_files:
+        print(f"Updating with {file}")
+        columns, values = get_columns_and_values(file)
+        primary_key = columns[0]
+        table = primary_key.replace("_id","")
+        print(primary_key, table)
+        query = create_upsert_query(
+            table=table, columns=columns, values=values, primary_key=primary_key
+        )
+        generate_db_objects(query)
 
 if __name__ == "__main__":
     main()
