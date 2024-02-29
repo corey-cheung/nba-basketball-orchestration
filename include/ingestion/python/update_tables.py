@@ -20,8 +20,8 @@ def get_columns_and_values(file: str) -> tuple[list[str], str]:
     with open(f"./temp/{file}", "r", encoding="UTF-8") as table:
         table = csv.reader(table)
         columns = next(table)
-
         values_str = ""
+
         for line in table:
             values = ",".join(line)
             values_str += f"({values}),\n"
@@ -45,7 +45,6 @@ def create_upsert_query(
         primary_key: The primary key of the table, used for the upsert.
         values: The values to upsert.
     """
-
     query = f"""INSERT INTO nba_basketball.{table}
 ({",".join(columns)})
 VALUES
@@ -74,7 +73,6 @@ def main():
         columns, values = get_columns_and_values(file)
         primary_key = columns[0]
         table = primary_key.replace("_id", "")
-        print(primary_key, table)
         query = create_upsert_query(
             table=table, columns=columns, values=values, primary_key=primary_key
         )
