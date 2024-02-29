@@ -12,13 +12,13 @@ from ingestion_utils import write_to_csv, handle_apostrophes, handle_nulls
 
 def get_player_ids() -> list[int]:
     """
-    Get the player_id's from the temp_box_score csv, to query the players endpoint.
+    Get the player_id's from the temporary box_score csv, to query the players endpoint.
     """
     players = duckdb.sql(
         """
             SELECT
                 DISTINCT player_id
-            FROM read_csv('temp_box_scores.csv', AUTO_DETECT=TRUE)
+            FROM read_csv('temp/4_temp_box_scores.csv', AUTO_DETECT=TRUE)
         """
     ).fetchall()
     players = [player[0] for player in players]
@@ -86,7 +86,7 @@ def get_players(
         meta = response.json()["meta"]
         data = [format_player_data(i) for i in data]
         write_to_csv(
-            path="temp_players.csv",
+            path="temp/2_temp_players.csv",
             data=data,
             truncate=truncate,
             header=column_names,

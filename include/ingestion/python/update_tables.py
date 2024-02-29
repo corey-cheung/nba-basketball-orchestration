@@ -17,7 +17,7 @@ def get_columns_and_values(file: str) -> tuple[list[str], str]:
     Parameters:
         file: The file name of the CSV.
     """
-    with open(file, "r", encoding="UTF-8") as table:
+    with open(f"./temp/{file}", "r", encoding="UTF-8") as table:
         table = csv.reader(table)
         columns = next(table)
 
@@ -66,7 +66,8 @@ def main():
     """
     Loop through all the CSVs in the directory and upsert the relevant tables.
     """
-    temp_table_files = [file for file in os.listdir(".") if file.endswith(".csv")]
+    temp_table_files = [file for file in os.listdir("./temp") if file.endswith(".csv")]
+    temp_table_files.sort()
 
     for file in temp_table_files:
         print(f"Updating with {file}")

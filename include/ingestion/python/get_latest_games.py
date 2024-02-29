@@ -96,7 +96,7 @@ def get_games(
         meta = response.json()["meta"]
         data = [format_games_data(i) for i in data]
         write_to_csv(
-            path="temp_games.csv", data=data, truncate=truncate, header=column_names
+            path="temp/3_temp_games.csv", data=data, truncate=truncate, header=column_names
         )
 
         if "next_cursor" not in meta:  # base case: last page
