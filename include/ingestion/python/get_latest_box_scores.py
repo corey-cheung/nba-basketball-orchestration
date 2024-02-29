@@ -11,13 +11,13 @@ from ingestion_utils import handle_nulls, write_to_csv
 
 def get_games_ids() -> list[int]:
     """
-    Get the game_id's from the temp_games csv, to query the box score endpoint.
+    Get the game_id's from the temporary games csv, to query the box score endpoint.
     """
     games = duckdb.sql(
         """
             SELECT
                 DISTINCT game_id
-            FROM read_csv('temp_games.csv', AUTO_DETECT=TRUE)
+            FROM read_csv('temp/3_temp_games.csv', AUTO_DETECT=TRUE)
         """
     ).fetchall()
     games = [game[0] for game in games]
@@ -112,7 +112,7 @@ def get_box_scores(
         meta = response.json()["meta"]
         data = [format_box_score_data(i) for i in data]
         write_to_csv(
-            path="temp_box_scores.csv",
+            path="temp/4_temp_box_scores.csv",
             data=data,
             truncate=truncate,
             header=column_names,

@@ -51,7 +51,7 @@ def get_teams(api_key: str, url: str) -> None:
         data = response.json()["data"]
         data = [format_team_data(team) for team in data]
         write_to_csv(
-            path="temp_teams.csv",
+            path="temp/1_temp_teams.csv",
             data=data,
             truncate=True,
             header=column_names,
