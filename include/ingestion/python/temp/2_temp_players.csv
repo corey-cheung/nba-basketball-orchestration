@@ -126,7 +126,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 306,'C',26,'JaVale','McGee',7,0,270
 313,'G',23,'De''Anthony','Melton',6,3,200
 315,'F',17,'Khris','Middleton',6,7,222
-319,'G',1,'Patty','Mills',6,2,180
+319,'G',1,'Patty','Mills',6,0,180
 320,'G',9,'Shake','Milton',6,5,205
 322,'G',6,'Donovan','Mitchell',6,3,215
 324,'G',26,'Malik','Monk',6,3,200
@@ -282,6 +282,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3547268,'F-C',8,'Zeke','Nnaji',6,9,240
 3547269,'G',28,'Immanuel','Quickley',6,2,190
 3547270,'F',23,'Paul','Reed',6,9,210
+3547271,'C',4,'Aleksej','Pokusevski',7,0,210
 3547272,'G',21,'Isaiah','Joe',6,3,165
 3547274,'G',27,'Tre','Jones',6,1,185
 3547275,'G',9,'Malachi','Flynn',6,1,185
