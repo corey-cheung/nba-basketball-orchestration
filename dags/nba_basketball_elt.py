@@ -27,7 +27,8 @@ with DAG(
     teams = BashOperator(
         task_id="get_latest_teams",
         bash_command=(
-            conda_setup + "conda activate nba-basketball-orchestration && "
+            conda_setup
+            + "conda activate nba-basketball-orchestration && "
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./get_latest_teams.py"
         ),
@@ -36,7 +37,8 @@ with DAG(
     games = BashOperator(
         task_id="get_latest_games",
         bash_command=(
-            conda_setup + "conda activate nba-basketball-orchestration && "
+            conda_setup
+            + "conda activate nba-basketball-orchestration && "
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./get_latest_games.py"
         ),
@@ -45,7 +47,8 @@ with DAG(
     box_score = BashOperator(
         task_id="get_latest_box_scores",
         bash_command=(
-            conda_setup + "conda activate nba-basketball-orchestration && "
+            conda_setup
+            + "conda activate nba-basketball-orchestration && "
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./get_latest_box_scores.py"
         ),
@@ -54,7 +57,8 @@ with DAG(
     players = BashOperator(
         task_id="get_latest_players",
         bash_command=(
-            conda_setup + "conda activate nba-basketball-orchestration && "
+            conda_setup
+            + "conda activate nba-basketball-orchestration && "
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./get_latest_players.py"
         ),
@@ -63,7 +67,8 @@ with DAG(
     update_tables = BashOperator(
         task_id="update_postgres_tables",
         bash_command=(
-            conda_setup + "conda activate nba-basketball-orchestration && "
+            conda_setup
+            + "conda activate nba-basketball-orchestration && "
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./update_tables.py"
         ),
@@ -72,9 +77,10 @@ with DAG(
     test_postgres = BashOperator(
         task_id="test_postgres_tables",
         bash_command=(
-            conda_setup + "conda activate nba-basketball-orchestration && "
+            conda_setup
+            + "conda activate nba-basketball-orchestration && "
             + f"cd {nba_elt_dir} && include/tests/python/test_ingestion.py"
-            ),
+        ),
     )
 
     airbyte_sync_duckdb = AirbyteTriggerSyncOperator(
@@ -89,10 +95,11 @@ with DAG(
     dbt_build = BashOperator(
         task_id="run_dbt_build",
         bash_command=(
-            conda_setup + "conda activate nba-basketball-dbt && "
+            conda_setup
+            + "conda activate nba-basketball-dbt && "
             + f"cd {home_dir}/dev/nba-basketball-dbt && "
             + "dbt build"
-            ),
+        ),
     )
 
     @task
@@ -113,9 +120,10 @@ with DAG(
 
         return postgres_rows == duckdb_rows
 
+    @task
     def merge_latest_csvs():
         result = subprocess.run(
-        f"""
+            f"""
         git -C {nba_elt_dir} stash &&
         git -C {nba_elt_dir} checkout master &&
         git -C {nba_elt_dir} pull origin master &&
@@ -127,9 +135,11 @@ with DAG(
         git -C {nba_elt_dir} commit -m 'upload latest CSVs' &&
         git -C {nba_elt_dir} push
         """,
-        shell=True, capture_output=True, text=True)
+            shell=True,
+            capture_output=True,
+            text=True,
+        )
         print(result.stdout)
-
 
     (
         [teams, games]
@@ -139,4 +149,5 @@ with DAG(
         >> [test_postgres, airbyte_sync_duckdb]
         >> dbt_build
         >> check_row_count()
+        >> merge_latest_csvs()
     )

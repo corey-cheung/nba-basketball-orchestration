@@ -125,5 +125,5 @@ if __name__ == "__main__":
         url="http://api.balldontlie.io/v1/games",
         look_back=2,
         csv_header=True,
-        per_page=8,
+        per_page=100,
     )
