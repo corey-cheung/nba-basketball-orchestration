@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import subprocess
 
 import pendulum
 
@@ -111,6 +112,24 @@ with DAG(
         assert postgres_rows == duckdb_rows
 
         return postgres_rows == duckdb_rows
+
+    def merge_latest_csvs():
+        result = subprocess.run(
+        f"""
+        git -C {nba_elt_dir} stash &&
+        git -C {nba_elt_dir} checkout master &&
+        git -C {nba_elt_dir} pull origin master &&
+        git -C {nba_elt_dir} stash pop &&
+        git -C {nba_elt_dir} add include/ingestion/python/temp/1_temp_teams.csv \
+        include/ingestion/python/temp/2_temp_players.csv \
+        include/ingestion/python/temp/3_temp_games.csv \
+        include/ingestion/python/temp/4_temp_box_scores.csv &&
+        git -C {nba_elt_dir} commit -m 'upload latest CSVs' &&
+        git -C {nba_elt_dir} push
+        """,
+        shell=True, capture_output=True, text=True)
+        print(result.stdout)
+
 
     (
         [teams, games]
