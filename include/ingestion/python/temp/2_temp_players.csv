@@ -130,7 +130,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 320,'G',9,'Shake','Milton',6,5,205
 322,'G',6,'Donovan','Mitchell',6,3,215
 324,'G',26,'Malik','Monk',6,3,200
-328,'F',27,'Marcus','Morris',6,8,218
+328,'F',23,'Marcus','Morris',6,8,218
 329,'F',7,'Markieff','Morris',6,9,245
 330,'G',18,'Monte','Morris',6,2,183
 334,'G',1,'Dejounte','Murray',6,5,180
