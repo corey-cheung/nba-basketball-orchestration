@@ -122,6 +122,9 @@ with DAG(
 
     @task
     def merge_latest_csvs():
+        """
+        Merge the latest csvs into origin master.
+        """
         result = subprocess.run(
             f"""
         git -C {nba_elt_dir} stash &&
