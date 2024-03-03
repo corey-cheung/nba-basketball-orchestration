@@ -144,6 +144,16 @@ with DAG(
         )
         print(result.stdout)
 
+    streamlit_queries = BashOperator(
+        task_id="run_streamlit_queries",
+        bash_command=(
+            conda_setup
+            + "conda activate nba-basketball-analytics && "
+            + f"cd {home_dir}/dev/nba-basketball-analytics && "
+            + "src/run_queries.py"
+        ),
+    )
+
     (
         [teams, games]
         >> box_score
@@ -151,6 +161,6 @@ with DAG(
         >> update_tables
         >> [test_postgres, airbyte_sync_duckdb]
         >> dbt_build
-        >> check_row_count()
-        >> merge_latest_csvs()
+        >> [check_row_count(), merge_latest_csvs()]
+        >> streamlit_queries
     )
