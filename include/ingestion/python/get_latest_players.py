@@ -43,8 +43,12 @@ def format_player_data(
     formatted["team_id"] = player["team"]["id"]
     formatted["first_name"] = player["first_name"]
     formatted["last_name"] = player["last_name"]
-    formatted["height_feet"] = player["height"].split("-")[0]
-    formatted["height_inches"] = player["height"].split("-")[1]
+    if player["height"] is not None:
+        formatted["height_feet"] = player["height"].split("-")[0]
+        formatted["height_inches"] = player["height"].split("-")[1]
+    else:
+        formatted["height_feet"] = None
+        formatted["height_inches"] = None
     formatted["weight_pounds"] = player["weight"]
 
     return formatted
