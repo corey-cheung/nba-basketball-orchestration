@@ -66,6 +66,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 165,'G',22,'Markelle','Fultz',6,4,209
 167,'F',17,'Danilo','Gallinari',6,10,236
 172,'F',13,'Paul','George',6,8,220
+174,'F-C',14,'Harry','Giles III',6,10,240
 175,'G',21,'Shai','Gilgeous-Alexander',6,6,195
 176,'C',18,'Rudy','Gobert',7,1,258
 177,'F',8,'Aaron','Gordon',6,8,235
@@ -269,6 +270,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3547253,'G',24,'Theo','Maledon',6,5,175
 3547254,'G',23,'Tyrese','Maxey',6,2,200
 3547256,'F',1,'Saddiq','Bey',6,7,215
+3547257,'G',30,'R.J.','Hampton',6,4,175
 3547258,'G',7,'Josh','Green',6,5,200
 3547259,'F',18,'Jaden','McDaniels',6,9,185
 3547260,'G',29,'Kira','Lewis Jr.',6,1,170
@@ -525,3 +527,4 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 436846673,'G',21,'Adam','Flagler',6,3,180
 795959473,'G',10,'Pat','Spencer',6,3,205
 907726640,'G',5,'Andrew','Funk',6,5,200
+1015289727,NULL,17,'Jaylin','Galloway',NULL,NULL,NULL
