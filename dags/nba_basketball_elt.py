@@ -169,7 +169,7 @@ with DAG(
         git -C {nba_analytics_dir} add src/datasets/last_10_games.csv \
         src/datasets/latest_games.csv \
         src/datasets/season_stats.csv &&
-        git -C {nba_analytics_dir} commit -m 'upload latest CSVs' &&
+        git -C {nba_analytics_dir} commit -m 'upload latest query results' &&
         git -C {nba_analytics_dir} push
         """,
             shell=True,
