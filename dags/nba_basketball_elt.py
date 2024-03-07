@@ -17,7 +17,7 @@ from task_utils import query_duckdb, query_postgres, split_queries_to_list
 with DAG(
     dag_id="nba_basketball_elt",
     start_date=datetime(2024, 1, 1, tz=pendulum.timezone("Australia/Brisbane")),
-    schedule="0 18 * * *",
+    schedule="0 8 * * *",
     catchup=False,
 ):
     home_dir = os.environ.get("HOME_DIR")
@@ -154,6 +154,30 @@ with DAG(
         ),
     )
 
+    @task
+    def merge_streamlit_query_results():
+        """
+        Merge the new results of the streamlit queries into origin master.
+        """
+        nba_analytics_dir = f"{home_dir}/dev/nba-basketball-analytics"
+        result = subprocess.run(
+            f"""
+        git -C {nba_analytics_dir} stash &&
+        git -C {nba_analytics_dir} checkout master &&
+        git -C {nba_analytics_dir} pull origin master &&
+        git -C {nba_analytics_dir} stash pop &&
+        git -C {nba_analytics_dir} add src/datasets/last_10_games.csv \
+        src/datasets/latest_games.csv \
+        src/datasets/season_stats.csv &&
+        git -C {nba_analytics_dir} commit -m 'upload latest CSVs' &&
+        git -C {nba_analytics_dir} push
+        """,
+            shell=True,
+            capture_output=True,
+            text=True,
+        )
+        print(result.stdout)
+
     (
         [teams, games]
         >> box_score
@@ -163,4 +187,5 @@ with DAG(
         >> dbt_build
         >> [check_row_count(), merge_latest_csvs()]
         >> streamlit_queries
+        >> merge_streamlit_query_results()
     )
