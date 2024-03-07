@@ -223,7 +223,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 666633,'G',16,'Tyler','Herro',6,5,195
 666650,'G',29,'Talen','Horton-Tucker',6,4,234
 666656,'F',1,'De''Andre','Hunter',6,8,221
-666675,'F',20,'DaQuan','Jeffries',6,5,222
 666676,'G',6,'Ty','Jerome',6,5,195
 666679,'F',3,'Cameron','Johnson',6,8,210
 666682,'F',27,'Keldon','Johnson',6,5,220
@@ -267,7 +266,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3547249,'F',20,'Precious','Achiuwa',6,8,243
 3547250,'G-F',12,'Aaron','Nesmith',6,6,215
 3547251,'G',22,'Cole','Anthony',6,2,185
-3547253,'G',24,'Theo','Maledon',6,5,175
 3547254,'G',23,'Tyrese','Maxey',6,2,200
 3547256,'F',1,'Saddiq','Bey',6,7,215
 3547257,'G',30,'R.J.','Hampton',6,4,175
@@ -511,7 +509,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 56677864,'G',2,'Jordan','Walsh',6,6,205
 56677866,'F',4,'Leaky','Black',6,6,209
 56677867,'F',7,'Alex','Fudge',6,8,200
-56677869,'G',28,'Markquis','Nowell',5,7,160
 56677871,'F',8,'Hunter','Tyson',6,8,215
 56677872,'G',6,'Craig','Porter',6,1,180
 56677874,'F',5,'Onuralp','Bitim',6,6,215
