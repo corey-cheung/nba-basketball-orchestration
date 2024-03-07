@@ -327,7 +327,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 17896026,'F',22,'Franz','Wagner',6,10,220
 17896027,'G-F',15,'Ziaire','Williams',6,9,185
 17896028,'F',7,'Greg','Brown III',6,7,206
-17896029,'G',6,'Sharife','Cooper',6,0,176
+17896029,'G',6,'Sharife','Cooper',6,1,176
 17896030,'G',26,'Chris','Duarte',6,5,190
 17896031,'G',13,'Nah''Shon','Hyland',6,2,169
 17896033,'G',20,'Miles','McBride',6,1,195
