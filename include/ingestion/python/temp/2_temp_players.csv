@@ -64,8 +64,10 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 160,'G-F',9,'Evan','Fournier',6,6,205
 161,'G',26,'De''Aaron','Fox',6,3,185
 165,'G',22,'Markelle','Fultz',6,4,209
+166,'F',15,'Wenyen','Gabriel',6,9,205
 167,'F',17,'Danilo','Gallinari',6,10,236
 172,'F',13,'Paul','George',6,8,220
+173,'F',9,'Taj','Gibson',6,9,232
 174,'F-C',14,'Harry','Giles III',6,10,240
 175,'G',21,'Shai','Gilgeous-Alexander',6,6,195
 176,'C',18,'Rudy','Gobert',7,1,258
@@ -126,6 +128,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 306,'C',26,'JaVale','McGee',7,0,270
 313,'G',23,'De''Anthony','Melton',6,3,200
 315,'F',17,'Khris','Middleton',6,7,222
+319,'G',16,'Patty','Mills',6,2,180
 320,'G',20,'Shake','Milton',6,5,205
 322,'G',6,'Donovan','Mitchell',6,3,215
 324,'G',26,'Malik','Monk',6,3,200
@@ -186,6 +189,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 460,'C',5,'Nikola','Vucevic',6,10,260
 462,'C',22,'Moritz','Wagner',6,11,245
 464,'G',3,'Lonnie','Walker IV',6,4,204
+469,'F',18,'T.J.','Warren',6,8,220
 470,'G',15,'Yuta','Watanabe',6,9,215
 472,'G',13,'Russell','Westbrook',6,4,200
 473,'G',2,'Derrick','White',6,4,190
