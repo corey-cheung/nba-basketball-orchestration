@@ -151,7 +151,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 371,'F-C',13,'Mason','Plumlee',6,10,254
 373,'C',28,'Jakob','Poeltl',7,0,260
 375,'F',8,'Michael','Porter Jr.',6,10,218
-376,'F',29,'Otto','Porter Jr.',6,8,230
+376,'F',28,'Otto','Porter Jr.',6,8,198
 377,'F',17,'Bobby','Portis',6,10,250
 378,'F-C',2,'Kristaps','Porzingis',7,2,240
 379,'F-C',7,'Dwight','Powell',6,10,240
@@ -208,6 +208,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3092,NULL,16,'Haywood','Highsmith',6,5,220
 666400,'G',18,'Nickeil','Alexander-Walker',6,5,205
 666423,'F-G',28,'RJ','Barrett',6,6,214
+666429,'F',29,'Darius','Bazley',6,9,216
 666442,'C',22,'Goga','Bitadze',6,10,250
 666451,'C',24,'Bol','Bol',7,3,220
 666453,'C',4,'Marques','Bolden',6,10,249
@@ -272,7 +273,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3547251,'G',22,'Cole','Anthony',6,2,185
 3547254,'G',23,'Tyrese','Maxey',6,2,200
 3547256,'F',1,'Saddiq','Bey',6,7,215
-3547257,'G',30,'R.J.','Hampton',6,4,175
+3547257,'G',16,'R.J.','Hampton',6,4,175
 3547258,'G',7,'Josh','Green',6,5,200
 3547259,'F',18,'Jaden','McDaniels',6,9,185
 3547260,'G',29,'Kira','Lewis Jr.',6,1,170
@@ -435,6 +436,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 38017729,'F',24,'David','Roddy',6,4,255
 38017730,'F',27,'Dominick','Barlow',6,9,215
 38017731,'G',15,'Vince','Williams Jr.',6,4,205
+38017732,'F',29,'Kenneth','Lofton Jr.',6,6,275
 38017733,'G',17,'A.J.','Green',6,4,190
 38017734,'F',16,'Jamal','Cain',6,6,191
 38017736,'F',16,'Cole','Swider',6,8,220
