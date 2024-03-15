@@ -151,7 +151,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 371,'F-C',13,'Mason','Plumlee',6,10,254
 373,'C',28,'Jakob','Poeltl',7,0,260
 375,'F',8,'Michael','Porter Jr.',6,10,218
-376,'F',28,'Otto','Porter Jr.',6,8,198
 377,'F',17,'Bobby','Portis',6,10,250
 378,'F-C',2,'Kristaps','Porzingis',7,2,240
 379,'F-C',7,'Dwight','Powell',6,10,240
@@ -228,6 +227,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 666633,'G',16,'Tyler','Herro',6,5,195
 666650,'G',29,'Talen','Horton-Tucker',6,4,234
 666656,'F',1,'De''Andre','Hunter',6,8,221
+666675,'F',20,'DaQuan','Jeffries',6,5,222
 666676,'G',6,'Ty','Jerome',6,5,195
 666679,'F',3,'Cameron','Johnson',6,8,210
 666682,'F',27,'Keldon','Johnson',6,5,220
@@ -257,6 +257,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 1603383,'G',14,'Gabe','Vincent',6,2,200
 2309958,'C-F',28,'Jontay','Porter',6,10,240
 3547095,'C-F',24,'Udoka','Azubuike',6,11,270
+3547163,'F',20,'Mamadi','Diakite',6,9,228
 3547207,'F',28,'Jordan','Nwora',6,8,225
 3547238,'G',18,'Anthony','Edwards',6,4,225
 3547239,'G',4,'LaMelo','Ball',6,7,180
@@ -532,3 +533,4 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 907726640,'G',5,'Andrew','Funk',6,5,200
 1015289727,NULL,17,'Jaylin','Galloway',6,6,190
 1015298615,'G',19,'Izaiah','Brockington',6,4,196
+1016384149,'F',30,'Tristan','Vukcevic',6,10,220
