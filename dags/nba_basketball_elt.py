@@ -17,7 +17,7 @@ from task_utils import query_duckdb, query_postgres, split_queries_to_list
 with DAG(
     dag_id="nba_basketball_elt",
     start_date=datetime(2024, 1, 1, tz=pendulum.timezone("Australia/Brisbane")),
-    schedule="0 8 * * *",
+    schedule="0 0 * * *",
     catchup=False,
 ):
     home_dir = os.environ.get("HOME_DIR")
