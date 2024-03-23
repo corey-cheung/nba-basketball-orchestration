@@ -15,7 +15,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 33,'F-G',23,'Nicolas','Batum',6,8,230
 37,'G',24,'Bradley','Beal',6,4,207
 38,'G',17,'Malik','Beasley',6,4,187
-44,'F',4,'Davis','Bertans',6,10,225
 45,'G',17,'Patrick','Beverley',6,2,180
 48,'C',21,'Bismack','Biyombo',6,8,255
 53,'G',1,'Bogdan','Bogdanovic',6,5,225
@@ -23,7 +22,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 57,'G',24,'Devin','Booker',6,6,206
 58,'F',28,'Chris','Boucher',6,9,200
 61,'F',3,'Mikal','Bridges',6,6,209
-62,'F',4,'Miles','Bridges',6,7,225
 65,'G',25,'Malcolm','Brogdon',6,4,229
 66,'G-F',11,'Dillon','Brooks',6,6,225
 68,'F',9,'Troy','Brown Jr.',6,7,215
@@ -47,7 +45,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 108,'F',23,'Robert','Covington',6,7,209
 110,'F',5,'Torrey','Craig',6,5,221
 112,'F',17,'Jae','Crowder',6,6,235
-114,'G',4,'Seth','Curry',6,1,185
 115,'G',10,'Stephen','Curry',6,2,185
 117,'F-C',14,'Anthony','Davis',6,10,253
 125,'G',5,'DeMar','DeRozan',6,6,220
@@ -212,7 +209,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 666429,'F',29,'Darius','Bazley',6,9,216
 666442,'C',22,'Goga','Bitadze',6,10,250
 666451,'C',24,'Bol','Bol',7,3,220
-666453,'C',4,'Marques','Bolden',6,10,249
 666468,'F',2,'Oshae','Brissett',6,7,210
 666474,'G',20,'Charles','Brown',6,6,199
 666476,'C',25,'Moses','Brown',7,2,258
@@ -237,7 +233,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 666729,'F',24,'Nassir','Little',6,6,220
 666743,'G',13,'Terance','Mann',6,5,215
 666747,'F',16,'Caleb','Martin',6,5,205
-666748,'F',4,'Cody','Martin',6,6,205
 666754,'G',1,'Garrison','Mathews',6,6,215
 666762,'F',28,'Jalen','McDaniels',6,9,190
 666767,'G',18,'Jordan','McLaughlin',6,0,185
@@ -252,7 +247,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 666940,'F',6,'Dean','Wade',6,9,228
 666950,'F',7,'P.J.','Washington',6,7,230
 666956,'G',5,'Coby','White',6,5,195
-666965,'F',4,'Grant','Williams',6,6,236
 666969,'F',19,'Zion','Williamson',6,6,284
 666971,'G-F',1,'Dylan','Windler',6,7,196
 667378,'F-C',18,'Naz','Reid',6,9,264
@@ -262,7 +256,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3547163,'F',20,'Mamadi','Diakite',6,9,228
 3547207,'F',28,'Jordan','Nwora',6,8,225
 3547238,'G',18,'Anthony','Edwards',6,4,225
-3547239,'G',4,'LaMelo','Ball',6,7,180
 3547240,'C',9,'James','Wiseman',6,11,240
 3547242,'F',30,'Deni','Avdija',6,9,210
 3547243,'F',12,'Obi','Toppin',6,9,220
@@ -285,7 +278,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3547268,'F-C',8,'Zeke','Nnaji',6,9,240
 3547269,'G',28,'Immanuel','Quickley',6,2,190
 3547270,'F',23,'Paul','Reed',6,9,210
-3547271,'C',4,'Aleksej','Pokusevski',7,0,210
 3547272,'G',21,'Isaiah','Joe',6,3,165
 3547274,'G',27,'Tre','Jones',6,1,185
 3547275,'G',9,'Malachi','Flynn',6,1,185
@@ -293,7 +285,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3547278,'G-F',25,'Ashton','Hagans',6,3,190
 3547279,'F',15,'Lamar','Stevens',6,7,230
 3547281,'G-F',11,'Nate','Hinton',6,5,210
-3547282,'C',4,'Nick','Richards',7,0,245
 3547285,'F',2,'Xavier','Tillman',6,7,245
 3547287,'G',15,'Desmond','Bane',6,5,215
 3547289,'G',14,'Skylar','Mays',6,3,205
@@ -305,7 +296,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 3547299,'G',6,'Sam','Merrill',6,4,205
 3547301,'F',11,'Jae''Sean','Tate',6,4,230
 3547302,'F',30,'Anthony','Gill',6,8,230
-4197029,'G',4,'Vasilije','Micic',6,3,188
 4197162,'F',26,'Aleksandar','Vezenkov',6,8,225
 4197387,'G',1,'Vit','Krejci',6,8,195
 11891374,'C',29,'Omer','Yurtseven',6,11,275
@@ -338,7 +328,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 17896032,'F-C',23,'Kai','Jones',6,11,221
 17896033,'G',20,'Miles','McBride',6,1,195
 17896035,'F',12,'Isaiah','Jackson',6,9,205
-17896036,'G',4,'Tre','Mann',6,3,178
 17896038,'C',3,'Day''Ron','Sharpe',6,9,265
 17896039,'F',30,'Justin','Champagnie',6,6,206
 17896040,'F',1,'Jalen','Johnson',6,8,219
@@ -375,7 +364,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 17896120,'F',24,'Ish','Wainright',6,5,250
 18677954,'G',30,'Jared','Butler',6,3,193
 18677986,'F',19,'Trey','Murphy III',6,8,206
-18678001,'F',4,'JT','Thor',6,9,203
 18678058,NULL,15,'Jordan','Goodwin',6,4,200
 19465326,'C',11,'Jock','Landale',6,11,255
 19465584,'F',29,'Micah','Potter',6,9,248
@@ -411,7 +399,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 38017695,'F',11,'Tari','Eason',6,8,215
 38017696,'F',16,'Nikola','Jovic',6,10,205
 38017697,'G',14,'Max','Christie',6,5,190
-38017698,'C',4,'Mark','Williams',7,0,240
 38017699,'F',27,'Jeremy','Sochan',6,8,230
 38017700,'G',18,'Wendell','Moore Jr.',6,5,215
 38017701,'G',12,'Kendall','Brown',6,7,205
@@ -420,7 +407,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 38017705,'C',29,'Walker','Kessler',7,0,245
 38017706,'F',21,'Jaylin','Williams',6,9,240
 38017707,'G',2,'JD','Davison',6,1,195
-38017708,'G',4,'Bryce','McGowens',6,6,175
 38017709,'G',8,'Christian','Braun',6,6,220
 38017711,'F',25,'Jabari','Walker',6,7,227
 38017712,'G',17,'Ryan','Rollins',6,3,180
@@ -473,7 +459,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 56677809,'F',11,'Jermaine','Samuels Jr.',6,6,230
 56677817,'G',27,'Sidy','Cissoko',6,6,200
 56677822,'F-C',27,'Victor','Wembanyama',7,4,210
-56677823,'F',4,'Brandon','Miller',6,7,200
 56677824,'F',29,'Taylor','Hendricks',6,9,215
 56677825,'G-F',11,'Amen','Thompson',6,7,200
 56677826,'G-F',9,'Ausar','Thompson',6,6,205
@@ -496,9 +481,7 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 56677843,'F',3,'Noah','Clowney',6,9,210
 56677844,'G',30,'Bilal','Coulibaly',6,8,195
 56677845,'G',26,'Colby','Jones',6,6,207
-56677846,'G',4,'Nick','Smith Jr.',6,2,185
 56677847,'F',6,'Emoni','Bates',6,8,170
-56677848,'G',4,'Amari','Bailey',6,3,185
 56677849,'F',13,'Kobe','Brown',6,7,250
 56677850,'F',25,'Toumani','Camara',6,7,226
 56677851,'G',18,'Jaylen','Clark',6,4,205
@@ -514,7 +497,6 @@ player_id,position,team_id,first_name,last_name,height_feet,height_inches,weight
 56677861,'G',12,'Ben','Sheppard',6,6,190
 56677862,'F',26,'Jalen','Slawson',6,7,215
 56677864,'G',2,'Jordan','Walsh',6,6,205
-56677866,'F',4,'Leaky','Black',6,6,209
 56677867,'F',7,'Alex','Fudge',6,8,200
 56677871,'F',8,'Hunter','Tyson',6,8,215
 56677872,'G',6,'Craig','Porter',6,1,180
