@@ -6,6 +6,7 @@ import subprocess
 import pendulum
 
 from pendulum import datetime
+from datetime import timedelta
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
@@ -17,7 +18,7 @@ from task_utils import query_duckdb, query_postgres, split_queries_to_list
 with DAG(
     dag_id="nba_basketball_elt",
     start_date=datetime(2024, 1, 1, tz=pendulum.timezone("Australia/Brisbane")),
-    schedule="0 0 * * *",
+    schedule="0 22 * * *",
     catchup=False,
 ):
     home_dir = os.environ.get("HOME_DIR")
@@ -32,6 +33,8 @@ with DAG(
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./get_latest_teams.py"
         ),
+        retries = 3,
+        retry_delay = timedelta(minutes=2),
     )
 
     games = BashOperator(
@@ -42,6 +45,8 @@ with DAG(
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./get_latest_games.py"
         ),
+        retries = 3,
+        retry_delay = timedelta(minutes=2),
     )
 
     box_score = BashOperator(
@@ -52,6 +57,8 @@ with DAG(
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./get_latest_box_scores.py"
         ),
+        retries = 3,
+        retry_delay = timedelta(minutes=2),
     )
 
     players = BashOperator(
@@ -62,6 +69,8 @@ with DAG(
             + f"cd {nba_elt_dir}/include/ingestion/python"
             + " && ./get_latest_players.py"
         ),
+        retries = 3,
+        retry_delay = timedelta(minutes=2),
     )
 
     update_tables = BashOperator(
